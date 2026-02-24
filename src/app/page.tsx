@@ -34,10 +34,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-3 group">
             <Image
-              src="/Asset 1.png"
+              src="https://emeeducation.com/wp-content/uploads/2025/06/LOGO.png"
               alt="EME Education Logo"
-              width={100}
-              height={32}
+              width={140}
+              height={44}
               className="object-contain"
               priority
             />
@@ -197,7 +197,7 @@ const AboutSection = () => {
               Explore Courses <ArrowRight size={16} />
             </ShinyButton>
           </div>
-          <div className="lg:col-span-1 flex justify-center items-center">
+          <div className="lg:col-span-1 hidden md:flex justify-center items-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -422,10 +422,10 @@ const Footer = () => (
   <footer className="bg-black py-12">
     <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
       <Image
-        src="/Asset 1.png"
+        src="https://emeeducation.com/wp-content/uploads/2025/06/LOGO.png"
         alt="EME Education Logo"
-        width={120}
-        height={40}
+        width={160}
+        height={52}
         className="object-contain opacity-50 hover:opacity-100 transition-opacity"
       />
       <p className="text-slate-500 text-sm font-medium">© 2025 EME Education. All rights reserved.</p>

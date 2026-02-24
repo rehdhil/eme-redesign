@@ -3,18 +3,18 @@
 import type React from "react"
 
 interface ShinyButtonProps {
-    children: React.ReactNode
-    onClick?: () => void
-    className?: string
-    href?: string
+  children: React.ReactNode
+  onClick?: () => void
+  className?: string
+  href?: string
 }
 
 export function ShinyButton({ children, onClick, className = "", href }: ShinyButtonProps) {
-    const content = <span>{children}</span>;
+  const content = <span className="relative z-10 flex items-center justify-center gap-2 whitespace-nowrap">{children}</span>;
 
-    return (
-        <>
-            <style jsx>{`
+  return (
+    <>
+      <style jsx>{`
         @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
 
         @property --gradient-angle {
@@ -139,10 +139,6 @@ export function ShinyButton({ children, onClick, className = "", href }: ShinyBu
           opacity: 0.6;
         }
 
-        .shiny-cta span {
-          z-index: 1;
-        }
-
         .shiny-cta span::before {
           --size: calc(100% + 1rem);
           width: var(--size);
@@ -198,17 +194,24 @@ export function ShinyButton({ children, onClick, className = "", href }: ShinyBu
             scale: 1.2;
           }
         }
+
+        @media screen and (max-width: 768px) {
+          .shiny-cta {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.95rem;
+          }
+        }
       `}</style>
 
-            {href ? (
-                <a href={href} className={`shiny-cta ${className}`} onClick={onClick}>
-                    {content}
-                </a>
-            ) : (
-                <button className={`shiny-cta ${className}`} onClick={onClick}>
-                    {content}
-                </button>
-            )}
-        </>
-    )
+      {href ? (
+        <a href={href} className={`shiny-cta ${className}`} onClick={onClick}>
+          {content}
+        </a>
+      ) : (
+        <button className={`shiny-cta ${className}`} onClick={onClick}>
+          {content}
+        </button>
+      )}
+    </>
+  )
 }
