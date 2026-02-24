@@ -125,7 +125,7 @@ const PartnersCarousel = () => {
   }));
 
   return (
-    <section className="pt-24 pb-16 bg-black relative z-10 overflow-hidden">
+    <section className="pt-20 md:pt-24 pb-12 md:pb-16 bg-black relative z-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col items-center">
         <div className="text-center mb-16 max-w-2xl">
           <span className="text-brand-orange text-xs font-bold tracking-widest uppercase mb-4 block">Our Hiring Partners</span>
@@ -167,7 +167,7 @@ const AnimatedCounter = ({ from, to, suffix, duration = 2 }: { from: number, to:
 
 const AboutSection = () => {
   return (
-    <section className="py-20 md:py-32 bg-black relative overflow-hidden" id="about">
+    <section className="py-16 md:py-20 lg:py-32 bg-black relative overflow-hidden" id="about">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <motion.div
           initial="hidden"
@@ -268,7 +268,7 @@ const CoursesSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-slate-900 border-t border-b border-white/5 relative z-10" id="courses">
+    <section className="py-16 md:py-20 lg:py-32 bg-slate-900 border-t border-b border-white/5 relative z-10" id="courses">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -332,7 +332,7 @@ const PlacementSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-black border-b border-white/5 relative z-10 overflow-hidden" id="placement">
+    <section className="py-16 md:py-24 bg-black border-b border-white/5 relative z-10 overflow-hidden" id="placement">
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col items-center">
 
         <div className="text-center mb-16 max-w-2xl">
@@ -376,7 +376,9 @@ const ContactSection = () => (
               </div>
               <div>
                 <p className="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-1">Direct Line</p>
-                <p className="text-white text-xl font-medium tracking-wide">+91 98765 43210</p>
+                <a href="tel:+919037014410" className="text-white text-xl font-medium tracking-wide hover:text-brand-blue transition-colors">
+                  +91 90370 14410
+                </a>
               </div>
             </div>
             <div className="flex items-center gap-6">
@@ -385,7 +387,9 @@ const ContactSection = () => (
               </div>
               <div>
                 <p className="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-1">Email Us</p>
-                <p className="text-white text-xl font-medium tracking-wide">info@emeeducation.com</p>
+                <a href="mailto:info@emeeducation.com" className="text-white text-xl font-medium tracking-wide hover:text-brand-blue transition-colors">
+                  info@emeeducation.com
+                </a>
               </div>
             </div>
           </div>

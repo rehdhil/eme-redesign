@@ -94,13 +94,17 @@ export const ReviewSummaryCard: React.FC<ReviewSummaryCardProps> = ({
 
             <div className="flex items-center gap-1.5 z-10 relative">
                 {Array.from({ length: maxRating }, (_, i) => (
-                    <motion.div key={i} custom={i} variants={starVariants}>
-                        <Star
-                            className={cn(
-                                'h-8 w-8 drop-shadow-md transition-all',
-                                rating >= i + 1 ? 'text-yellow-400 fill-yellow-400' : 'text-slate-700 fill-slate-800'
-                            )}
-                        />
+                    <motion.div key={i} custom={i} variants={starVariants} className="relative inline-block">
+                        {/* Background Empty Star */}
+                        <Star className="h-8 w-8 text-slate-700 fill-slate-800 drop-shadow-md transition-all" />
+
+                        {/* Foreground Filled Star (Cropped by width) */}
+                        <div
+                            className="absolute top-0 left-0 overflow-hidden h-full transition-all"
+                            style={{ width: `${Math.max(0, Math.min(100, (rating - i) * 100))}%` }}
+                        >
+                            <Star className="h-8 w-8 text-yellow-400 fill-yellow-400 drop-shadow-md" />
+                        </div>
                     </motion.div>
                 ))}
             </div>

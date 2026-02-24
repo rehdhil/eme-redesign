@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShinyButton } from '@/components/ui/shiny-button';
+import { ShootingStars } from '@/components/ui/shooting-stars';
 
 export default function HeroVideo() {
     const containerRef = useRef<HTMLElement>(null);
@@ -25,7 +26,17 @@ export default function HeroVideo() {
             ref={containerRef}
             className="relative w-full bg-black pt-32 pb-20 overflow-hidden"
         >
-            <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-start px-6 md:px-10">
+            {/* Dynamic Shooting Stars Background */}
+            <ShootingStars
+                starColor="#FFFFFF"
+                trailColor="#2C86C6" // EME Brand Blue Hex
+                minSpeed={15}
+                maxSpeed={35}
+                minDelay={1200}
+                maxDelay={3000}
+            />
+
+            <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-start px-6 md:px-10">
 
                 {/* Animated Brand Headline */}
                 <motion.div

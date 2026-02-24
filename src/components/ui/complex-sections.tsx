@@ -88,7 +88,16 @@ export function FocusFeatures() {
                     <h2 className="text-3xl md:text-6xl font-extrabold text-white tracking-tighter mb-6">Why Choose EME?</h2>
                 </div>
 
-                <div className="relative mb-20">
+                <div className="relative mb-8 md:mb-16">
+                    {/* Interactive Prompt below header above timeline */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full pb-4 z-20 text-center animate-pulse">
+                        <p className="text-white/50 text-xs md:text-sm font-medium tracking-wide">
+                            <span className="md:hidden">Tap</span>
+                            <span className="hidden md:inline">Click</span>
+                            {" "}a node to explore details
+                        </p>
+                    </div>
+
                     <RadialOrbitalTimeline timelineData={timelineData} />
                 </div>
 
@@ -96,7 +105,7 @@ export function FocusFeatures() {
                     <ReviewSummaryCard
                         rating={4.6}
                         reviewCount={420}
-                        summaryText="Google Reviews 420+"
+                        summaryText="Based on 420+ google reviews"
                     />
                 </div>
             </div>
@@ -139,8 +148,8 @@ export function BentoShortsGrid() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
                 <div className="text-center mb-16 relative z-10">
-                    <span className="text-brand-blue text-xs font-bold tracking-widest uppercase mb-4 block">100% Placement Support</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Your Career is <br />Our Priority</h2>
+                    <span className="text-brand-blue text-xs font-bold tracking-widest uppercase mb-4 block">Success Stories</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Hear From Our <br />Placed Students</h2>
                 </div>
 
                 <motion.div

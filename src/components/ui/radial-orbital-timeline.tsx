@@ -106,20 +106,32 @@ export default function RadialOrbitalTimeline({
     };
 
     useEffect(() => {
-        let rotationTimer: NodeJS.Timeout;
+        let animationFrameId: number;
+        let lastTime = performance.now();
+
+        const rotate = (time: number) => {
+            if (autoRotate && viewMode === "orbital") {
+                const deltaTime = time - lastTime;
+                // Move approx 0.3 degrees every 16ms (60fps) to match old speed
+                const speedPerMs = 0.3 / 16;
+                const deltaAngle = deltaTime * speedPerMs;
+
+                setRotationAngle((prev) => {
+                    const newAngle = (prev + deltaAngle) % 360;
+                    return newAngle;
+                });
+            }
+            lastTime = time;
+            animationFrameId = requestAnimationFrame(rotate);
+        };
 
         if (autoRotate && viewMode === "orbital") {
-            rotationTimer = setInterval(() => {
-                setRotationAngle((prev) => {
-                    const newAngle = (prev + 0.3) % 360;
-                    return Number(newAngle.toFixed(3));
-                });
-            }, 50);
+            animationFrameId = requestAnimationFrame(rotate);
         }
 
         return () => {
-            if (rotationTimer) {
-                clearInterval(rotationTimer);
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
             }
         };
     }, [autoRotate, viewMode]);
@@ -223,7 +235,7 @@ export default function RadialOrbitalTimeline({
                                 ref={(el) => {
                                     if (el) nodeRefs.current[item.id] = el;
                                 }}
-                                className="absolute transition-all duration-700 cursor-pointer"
+                                className={`absolute cursor-pointer ${!autoRotate ? "transition-all duration-700 ease-in-out" : ""}`}
                                 style={nodeStyle}
                                 onClick={(e) => {
                                     e.stopPropagation();

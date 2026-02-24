@@ -1,5 +1,8 @@
+"use client";
+
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 type Logo = {
     src: string;
@@ -13,6 +16,18 @@ type LogoCloudProps = React.ComponentProps<"div"> & {
 };
 
 export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile(); // Check immediately
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     return (
         <div
             {...props}
@@ -21,7 +36,7 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
                 className
             )}
         >
-            <InfiniteSlider gap={42} reverse duration={80} durationOnHover={25}>
+            <InfiniteSlider gap={42} reverse duration={isMobile ? 35 : 80} durationOnHover={25}>
                 {logos.map((logo) => (
                     <img
                         alt={logo.alt}
