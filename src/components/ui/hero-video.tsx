@@ -35,7 +35,7 @@ export default function HeroVideo() {
                     <div className="inline-flex items-center gap-2 rounded-full border border-brand-blue/30 bg-brand-blue/10 px-4 py-2 backdrop-blur-md mb-6">
                         <span className="h-2 w-2 rounded-full bg-brand-blue shadow-[0_0_8px_rgba(44,134,198,0.8)] animate-pulse" />
                         <span className="text-xs font-bold uppercase tracking-widest text-brand-blue">
-                            Kerala's #1 SAP Training Institute
+                            Kerala&apos;s #1 SAP Training Institute
                         </span>
                     </div>
 

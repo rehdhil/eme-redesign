@@ -178,9 +178,9 @@ const AboutSection = () => {
         >
           <div className="lg:col-span-1">
             <motion.span variants={fadeUp} className="text-brand-blue text-xs font-bold tracking-widest uppercase mb-4 inline-block">About Us</motion.span>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">India's Largest<br />SAP Education Partner</motion.h2>
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">India&apos;s Largest<br />SAP Education Partner</motion.h2>
             <motion.p variants={fadeUp} className="text-slate-400 text-lg leading-relaxed mb-10">
-              India's largest SAP education partner consecutively for the past 4 years. We have taught more than 1000 students and have partnered with more than 100 educational institutions PAN India providing quality SAP education and placements in our hiring partner companies.
+              India&apos;s largest SAP education partner consecutively for the past 4 years. We have taught more than 1000 students and have partnered with more than 100 educational institutions PAN India providing quality SAP education and placements in our hiring partner companies.
             </motion.p>
 
             <div className="grid grid-cols-3 gap-6 w-full mb-10">
