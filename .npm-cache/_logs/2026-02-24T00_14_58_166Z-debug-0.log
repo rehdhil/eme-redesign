@@ -1,0 +1,141 @@
+0 verbose cli /Users/rehdhil/.nvm/versions/node/v19.9.0/bin/node /Users/rehdhil/.nvm/versions/node/v19.9.0/bin/npm
+1 info using npm@9.6.3
+2 info using node@v19.9.0
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 0ms
+5 timing config:load:file:/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/npmrc Completed in 0ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 0ms
+8 timing config:load:env Completed in 1ms
+9 timing config:load:project Completed in 0ms
+10 timing config:load:file:/Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/Users/rehdhil/.nvm/versions/node/v19.9.0/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:setEnvs Completed in 0ms
+15 timing config:load Completed in 3ms
+16 timing npm:load:configload Completed in 3ms
+17 timing npm:load:mkdirpcache Completed in 2ms
+18 timing npm:load:mkdirplogs Completed in 1ms
+19 verbose title npm install gsap @gsap/react three @react-three/fiber @react-three/drei clsx tailwind-merge framer-motion lucide-react
+20 verbose argv "install" "gsap" "@gsap/react" "three" "@react-three/fiber" "@react-three/drei" "clsx" "tailwind-merge" "framer-motion" "lucide-react"
+21 timing npm:load:setTitle Completed in 7ms
+22 timing config:load:flatten Completed in 1ms
+23 timing npm:load:display Completed in 1ms
+24 verbose logfile logs-max:10 dir:/Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/.npm-cache/_logs/2026-02-24T00_14_58_166Z-
+25 verbose logfile /Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/.npm-cache/_logs/2026-02-24T00_14_58_166Z-debug-0.log
+26 timing npm:load:logFile Completed in 4ms
+27 timing npm:load:timers Completed in 0ms
+28 timing npm:load:configScope Completed in 0ms
+29 timing npm:load Completed in 19ms
+30 timing arborist:ctor Completed in 0ms
+31 timing idealTree:init Completed in 88ms
+32 timing idealTree:userRequests Completed in 2ms
+33 silly idealTree buildDeps
+34 silly fetch manifest gsap@*
+35 verbose shrinkwrap failed to load node_modules/.package-lock.json [Error: EPERM: operation not permitted, stat '/Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/node_modules'] {
+35 verbose shrinkwrap   errno: -1,
+35 verbose shrinkwrap   code: 'EPERM',
+35 verbose shrinkwrap   syscall: 'stat',
+35 verbose shrinkwrap   path: '/Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/node_modules'
+35 verbose shrinkwrap }
+36 silly logfile done cleaning log files
+37 http fetch GET 200 https://registry.npmjs.org/gsap 130ms (cache miss)
+38 silly fetch manifest @gsap/react@*
+39 http fetch GET 200 https://registry.npmjs.org/npm 269ms (cache miss)
+40 http fetch GET 200 https://registry.npmjs.org/@gsap%2freact 260ms (cache miss)
+41 silly fetch manifest react@^18
+42 http fetch GET 200 https://registry.npmjs.org/react 234ms (cache miss)
+43 silly fetch manifest three@*
+44 http fetch GET 200 https://registry.npmjs.org/three 50ms (cache miss)
+45 silly fetch manifest @react-three/fiber@*
+46 http fetch GET 200 https://registry.npmjs.org/@react-three%2ffiber 64ms (cache miss)
+47 silly fetch manifest expo@>=43.0
+48 http fetch GET 200 https://registry.npmjs.org/expo 286ms (cache miss)
+49 silly fetch manifest @expo/dom-webview@*
+50 http fetch GET 200 https://registry.npmjs.org/@expo%2fdom-webview 984ms (cache miss)
+51 silly fetch manifest react-native@*
+52 http fetch GET 200 https://registry.npmjs.org/react-native 254ms (cache miss)
+53 silly fetch manifest @types/react@^18
+54 http fetch GET 200 https://registry.npmjs.org/@types%2freact 81ms (cache miss)
+55 silly fetch manifest @types/react@^19.1.1
+56 silly fetch manifest react@^19.2.3
+57 silly fetch manifest @expo/metro-runtime@*
+58 http fetch GET 200 https://registry.npmjs.org/@expo%2fmetro-runtime 238ms (cache miss)
+59 silly fetch manifest react-dom@^18
+60 http fetch GET 200 https://registry.npmjs.org/react-dom 253ms (cache miss)
+61 silly fetch manifest react-native-webview@*
+62 http fetch GET 200 https://registry.npmjs.org/react-native-webview 292ms (cache miss)
+63 silly fetch manifest expo-asset@>=8.4
+64 http fetch GET 200 https://registry.npmjs.org/expo-asset 57ms (cache miss)
+65 silly fetch manifest expo-file-system@>=11.0
+66 http fetch GET 200 https://registry.npmjs.org/expo-file-system 52ms (cache miss)
+67 silly fetch manifest expo-gl@>=11.0
+68 http fetch GET 200 https://registry.npmjs.org/expo-gl 280ms (cache miss)
+69 silly fetch manifest react-native-reanimated@*
+70 http fetch GET 200 https://registry.npmjs.org/react-native-reanimated 896ms (cache miss)
+71 silly fetch manifest react-native-worklets@>=0.7.0
+72 http fetch GET 200 https://registry.npmjs.org/react-native-worklets 335ms (cache miss)
+73 silly fetch manifest @babel/core@*
+74 http fetch GET 200 https://registry.npmjs.org/@babel%2fcore 59ms (cache miss)
+75 silly fetch manifest react-native-web@*
+76 http fetch GET 200 https://registry.npmjs.org/react-native-web 277ms (cache miss)
+77 silly fetch manifest react@>=19 <19.3
+78 timing idealTree Completed in 5317ms
+79 timing command:install Completed in 5342ms
+80 notice
+80 notice New [31mmajor[39m version of npm available! [31m9.6.3[39m -> [32m11.10.1[39m
+80 notice Changelog: [36mhttps://github.com/npm/cli/releases/tag/v11.10.1[39m
+80 notice Run [32mnpm install -g npm@11.10.1[39m to update!
+80 notice
+81 verbose stack Error: unable to resolve dependency tree
+81 verbose stack     at [failPeerConflict] (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:1381:25)
+81 verbose stack     at [loadPeerSet] (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:1374:30)
+81 verbose stack     at async [buildDepStep] (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:929:11)
+81 verbose stack     at async Arborist.buildIdealTree (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:207:7)
+81 verbose stack     at async Promise.all (index 1)
+81 verbose stack     at async Arborist.reify (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:159:5)
+81 verbose stack     at async Install.exec (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/lib/commands/install.js:146:5)
+81 verbose stack     at async module.exports (/Users/rehdhil/.nvm/versions/node/v19.9.0/lib/node_modules/npm/lib/cli.js:89:5)
+82 verbose cwd /Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app
+83 verbose Darwin 25.3.0
+84 verbose node v19.9.0
+85 verbose npm  v9.6.3
+86 error code ERESOLVE
+87 error ERESOLVE unable to resolve dependency tree
+88 error
+89 error While resolving: [1meme-react-app[22m@[1m0.1.0[22m
+89 error Found: [1mreact[22m@[1m18.3.1[22m[2m[22m
+89 error [2mnode_modules/react[22m
+89 error   [1mreact[22m@"[1m^18[22m" from the root project
+89 error   [35mpeer[39m [1mreact[22m@"[1m*[22m" from [1mexpo[22m@[1m54.0.33[22m[2m[22m
+89 error   [2mnode_modules/expo[22m
+89 error     peerOptional [1mexpo[22m@"[1m>=43.0[22m" from [1m@react-three/fiber[22m@[1m9.5.0[22m[2m[22m
+89 error     [2mnode_modules/@react-three/fiber[22m
+89 error       [1m@react-three/fiber[22m@"[1m*[22m" from the root project
+89 error     [35mpeer[39m [1mexpo[22m@"[1m*[22m" from [1m@expo/dom-webview[22m@[1m0.2.8[22m[2m[22m
+89 error     [2mnode_modules/@expo/dom-webview[22m
+89 error       peerOptional [1m@expo/dom-webview[22m@"[1m*[22m" from [1mexpo[22m@[1m54.0.33[22m
+89 error     4 more (@expo/metro-runtime, expo-asset, expo-file-system, expo-gl)
+89 error   9 more (@expo/dom-webview, @expo/metro-runtime, react-dom, ...)
+89 error
+89 error Could not resolve dependency:
+89 error [35mpeer[39m [1mreact[22m@"[1m>=19 <19.3[22m" from [1m@react-three/fiber[22m@[1m9.5.0[22m[2m[22m
+89 error [2mnode_modules/@react-three/fiber[22m
+89 error   [1m@react-three/fiber[22m@"[1m*[22m" from the root project
+89 error
+89 error Fix the upstream dependency conflict, or retry
+89 error this command with --force or --legacy-peer-deps
+89 error to accept an incorrect (and potentially broken) dependency resolution.
+90 error
+90 error
+90 error For a full report see:
+90 error /Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/.npm-cache/_logs/2026-02-24T00_14_58_166Z-eresolve-report.txt
+91 verbose exit 1
+92 timing npm Completed in 5371ms
+93 verbose unfinished npm timer reify 1771892098192
+94 verbose unfinished npm timer reify:loadTrees 1771892098215
+95 verbose unfinished npm timer idealTree:buildDeps 1771892098306
+96 verbose unfinished npm timer idealTree:#root 1771892098306
+97 verbose code 1
+98 error A complete log of this run can be found in: /Users/rehdhil/Downloads/EME 23 Feb 6-27PM/EME/eme-react-app/.npm-cache/_logs/2026-02-24T00_14_58_166Z-debug-0.log
