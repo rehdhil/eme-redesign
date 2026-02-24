@@ -120,23 +120,22 @@ const PartnersCarousel = () => {
   const logos = logoFiles.map((file) => ({
     src: `https://emeeducation.com/wp-content/uploads/2025/06/${file}`,
     alt: file.replace('-logo.webp', '').toUpperCase(),
-    height: 40,
-    width: 140
+    height: 80,
+    width: 280
   }));
 
   return (
     <section className="pt-24 pb-16 bg-black relative z-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col items-center">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-teal-400">Our Hiring Partners</span>
-          </h2>
-          <p className="text-lg md:text-xl font-medium tracking-wide">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-yellow-500 uppercase">Get Ready to Be the Next One Hired</span>
+        <div className="text-center mb-16 max-w-2xl">
+          <span className="text-brand-orange text-xs font-bold tracking-widest uppercase mb-4 block">Our Hiring Partners</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">Get Ready to Be<br />the Next One Hired</h2>
+          <p className="text-slate-400 text-lg leading-relaxed">
+            Join the ranks of our successful alumni who have secured elite positions across these top-tier global corporations.
           </p>
         </div>
 
-        <div className="w-full max-w-5xl">
+        <div className="w-full max-w-7xl">
           <LogoCloud logos={logos} />
         </div>
       </div>
