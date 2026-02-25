@@ -202,13 +202,12 @@ export default function RadialOrbitalTimeline({
                         transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
                     }}
                 >
-                    <div className="absolute w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-brand-blue via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
-                        <div className="absolute w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/20 animate-ping opacity-70"></div>
+                    <div className="absolute w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-brand-blue via-blue-500 to-teal-500 shadow-[0_0_30px_rgba(44,134,198,0.3)] flex items-center justify-center z-10">
+                        <div className="absolute w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/20 opacity-70"></div>
                         <div
-                            className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border border-white/10 animate-ping opacity-50"
-                            style={{ animationDelay: "0.5s" }}
+                            className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border border-white/10 opacity-50"
                         ></div>
-                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur-md"></div>
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/80"></div>
                     </div>
 
                     <div
@@ -267,7 +266,7 @@ export default function RadialOrbitalTimeline({
                   ${isExpanded
                                             ? "border-white shadow-lg shadow-white/30"
                                             : isRelated
-                                                ? "border-white animate-pulse"
+                                                ? "border-white"
                                                 : "border-white/40"
                                         }
                   transition-all duration-300 transform

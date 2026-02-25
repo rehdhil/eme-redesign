@@ -1,7 +1,45 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
+
+function YouTubeFacade({ src, title }: { src: string, title: string }) {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoId = src.split('/').pop()?.split('?')[0];
+
+    return (
+        <div 
+            className="absolute inset-0 w-full h-full z-10 cursor-pointer group flex items-center justify-center bg-black"
+            onClick={() => setIsPlaying(true)}
+        >
+            {!isPlaying ? (
+                <>
+                    <img 
+                        src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+                        alt={title}
+                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        loading="lazy"
+                    />
+                    <div className="absolute z-20 w-12 h-12 bg-brand-blue/80 rounded-full flex items-center justify-center group-hover:bg-brand-orange transition-colors shadow-[0_0_20px_rgba(44,134,198,0.5)] group-hover:scale-110">
+                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </>
+            ) : (
+                <iframe
+                    width="100%"
+                    height="100%"
+                    src={`${src}?autoplay=1`}
+                    title={title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                ></iframe>
+            )}
+        </div>
+    );
+}
+
 import { ReviewSummaryCard } from '@/components/ui/card-2';
 import { ShinyButton } from '@/components/ui/shiny-button';
 import RadialOrbitalTimeline from '@/components/ui/radial-orbital-timeline';
@@ -168,16 +206,10 @@ export function BentoShortsGrid() {
                             {/* 1px gradient border effect via a pseudo-element layering trick */}
                             <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/40 to-transparent pointer-events-none opacity-50"></div>
 
-                            <iframe
-                                width="100%"
-                                height="100%"
-                                src={short.src}
-                                title={`Placement Story ${i + 1}`}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen
-                                className="absolute inset-0 w-full h-full z-10"
-                            ></iframe>
+                            <YouTubeFacade 
+                                src={short.src} 
+                                title={`Placement Story ${i + 1}`} 
+                            />
                         </motion.div>
                     ))}
                 </motion.div>

@@ -61,7 +61,7 @@ export default function HeroVideo() {
                 {/* Scroll-Linked Scaling Video Container */}
                 <motion.div
                     style={{ scale }}
-                    className="relative w-full max-w-6xl aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(44,134,198,0.25)] border border-brand-blue/30 bg-black/50 z-20 origin-top mb-12"
+                    className="relative w-full max-w-6xl aspect-video rounded-2xl overflow-hidden border border-brand-blue/30 bg-black/50 z-20 origin-top mb-12"
                 >
                     <iframe
                         width="100%"
@@ -74,8 +74,7 @@ export default function HeroVideo() {
                         className="w-full h-full object-cover"
                     ></iframe>
 
-                    {/* Subtle brand blue glow behind the video */}
-                    <div className="absolute -inset-10 -z-10 bg-brand-blue/20 blur-[120px] rounded-full"></div>
+                    {/* Subtle brand blue glow behind the video has been disabled for performance */}
                 </motion.div>
 
                 {/* Sub-headline and CTA Button below video */}

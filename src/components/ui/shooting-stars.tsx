@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useInView } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface ShootingStar {
@@ -99,9 +100,12 @@ export function ShootingStars({
         }
     }, [createStar])
 
+    // Inside the component:
+    const isInView = useInView(containerRef, { margin: "200px" })
+
     useEffect(() => {
         const container = containerRef.current
-        if (!container) return
+        if (!container || !isInView) return // Stop loop if offscreen
 
         const moveStars = () => {
             const { width, height } = container.getBoundingClientRect()
@@ -130,7 +134,9 @@ export function ShootingStars({
                     .filter((star): star is ShootingStar => star !== null),
             )
 
-            animationRef.current = requestAnimationFrame(moveStars)
+            if (isInView) {
+                animationRef.current = requestAnimationFrame(moveStars)
+            }
         }
 
         animationRef.current = requestAnimationFrame(moveStars)
@@ -138,7 +144,7 @@ export function ShootingStars({
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current)
         }
-    }, [])
+    }, [isInView])
 
     return (
         <div
