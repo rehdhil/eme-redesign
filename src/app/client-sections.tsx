@@ -371,7 +371,7 @@ export const ContactSection = () => {
     e.preventDefault();
     setStatus('loading');
 
-    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
+    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook-test/emelandingpage';
 
     try {
       const queryParams = new URLSearchParams({
@@ -380,23 +380,28 @@ export const ContactSection = () => {
         source: 'EME Redesign Landing Page'
       }).toString();
 
-      const response = await fetch(`${WEBHOOK_URL}?${queryParams}`, {
+      // We use a background fetch so the redirect happens immediately for the user
+      fetch(`${WEBHOOK_URL}?${queryParams}`, {
         method: 'GET',
+        mode: 'no-cors', // Use no-cors to avoid preflight/CORS issues during testing
         headers: {
           'Accept': 'application/json',
         },
-      });
+      }).catch(err => console.log("Background webhook log:", err));
 
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', phone: '', module: '' });
-        router.push('/thank-you'); // Redirect immediately for conversion tracking
-      } else {
-        setStatus('error');
-      }
+      // Test Override: Always succeed and redirect for UX testing
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', module: '' });
+
+      // Small delay to show the "Success" state before redirecting
+      setTimeout(() => {
+        router.push('/thank-you');
+      }, 800);
+
     } catch (error) {
       console.error('Submission error:', error);
-      setStatus('error');
+      // Even on hard error, redirect for the conversion tracking test
+      router.push('/thank-you');
     }
   };
 
