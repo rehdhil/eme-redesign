@@ -371,19 +371,20 @@ export const ContactSection = () => {
     e.preventDefault();
     setStatus('loading');
 
-    const WEBHOOK_URL = 'https://hook.eu2.make.com/your-unique-webhook';
+    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
 
     try {
-      const response = await fetch(WEBHOOK_URL, {
-        method: 'POST',
+      const queryParams = new URLSearchParams({
+        ...formData,
+        submittedAt: new Date().toISOString(),
+        source: 'EME Redesign Landing Page'
+      }).toString();
+
+      const response = await fetch(`${WEBHOOK_URL}?${queryParams}`, {
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          submittedAt: new Date().toISOString(),
-          source: 'EME Redesign Landing Page'
-        }),
       });
 
       if (response.ok) {
