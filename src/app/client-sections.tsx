@@ -371,7 +371,7 @@ export const ContactSection = () => {
     e.preventDefault();
     setStatus('loading');
 
-    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook-test/emelandingpage';
+    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
 
     try {
       const queryParams = new URLSearchParams({
