@@ -359,16 +359,24 @@ export const PlacementSection = () => {
 
 export const ContactSection = () => {
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'unqualified'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    education: '',
     module: ''
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check qualification before sending data
+    if (formData.education === 'below_plus_2' || formData.education === 'plus_2') {
+      setStatus('unqualified');
+      return; // Stop the submission process
+    }
+
     setStatus('loading');
 
     const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
@@ -391,7 +399,7 @@ export const ContactSection = () => {
 
       // Test Override: Always succeed and redirect for UX testing
       setStatus('success');
-      setFormData({ name: '', email: '', phone: '', module: '' });
+      setFormData({ name: '', email: '', phone: '', education: '', module: '' });
 
       // Small delay to show the "Success" state before redirecting
       setTimeout(() => {
@@ -473,6 +481,19 @@ export const ContactSection = () => {
               />
               <select
                 required
+                value={formData.education}
+                onChange={(e) => setFormData({ ...formData, education: e.target.value })}
+                className="w-full bg-slate-900 border border-white/10 text-slate-400 rounded-xl px-4 py-4 mb-6 outline-none focus:border-brand-blue/50 transition-all font-medium appearance-none"
+              >
+                <option value="" disabled>Select Highest Education *</option>
+                <option value="below_plus_2">Below Plus 2</option>
+                <option value="plus_2">Plus 2</option>
+                <option value="graduation">Graduation</option>
+                <option value="post_graduation">Post Graduation</option>
+                <option value="other">Other</option>
+              </select>
+              <select
+                required
                 value={formData.module}
                 onChange={(e) => setFormData({ ...formData, module: e.target.value })}
                 className="w-full bg-slate-900 border border-white/10 text-slate-400 rounded-xl px-4 py-4 mb-8 outline-none focus:border-brand-blue/50 transition-all font-medium appearance-none"
@@ -494,12 +515,17 @@ export const ContactSection = () => {
 
               {status === 'success' && (
                 <p className="text-green-400 text-sm mt-4 text-center animate-pulse">
-                  ✅ application submitted successfully! We will contact you soon.
+                  ✅ Application submitted successfully! Connecting you now...
                 </p>
               )}
               {status === 'error' && (
                 <p className="text-red-400 text-sm mt-4 text-center">
-                  ❌ something went wrong. Please try again or call us directly.
+                  ❌ Something went wrong. Please try again or call us directly.
+                </p>
+              )}
+              {status === 'unqualified' && (
+                <p className="text-brand-orange text-sm mt-4 text-center font-medium bg-brand-orange/10 border border-brand-orange/20 p-3 rounded-lg">
+                  ⚠️ We're sorry, but graduation is the minimum educational requirement for our SAP certification programs.
                 </p>
               )}
 
