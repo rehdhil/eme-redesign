@@ -525,7 +525,7 @@ export const ContactSection = () => {
               )}
               {status === 'unqualified' && (
                 <p className="text-brand-orange text-sm mt-4 text-center font-medium bg-brand-orange/10 border border-brand-orange/20 p-3 rounded-lg">
-                  ⚠️ We're sorry, but graduation is the minimum educational requirement for our SAP certification programs.
+                  ⚠️ We&apos;re sorry, but graduation is the minimum educational requirement for our SAP certification programs.
                 </p>
               )}
 
