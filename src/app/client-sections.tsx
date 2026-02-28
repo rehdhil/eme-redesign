@@ -529,21 +529,18 @@ export const ContactSection = () => {
                 <PhoneInput
                   country={'in'}
                   value={formData.phone}
-                  onChange={(phone, data: any, event, formattedValue) => {
+                  {...{ disableMask: true } as any}
+                  onChange={(phone, data: any) => {
                     setFormData({ ...formData, phone });
-
-                    if (data && data.format) {
-                      // The format has dots for ALL digits (e.g. "+.. .........." = 12 dots)
-                      // The 'phone' value is ALL pure digits (e.g. "917306845970" = 12 length)
-                      const expectedTotalDigits = (data.format.match(/\./g) || []).length;
-                      setIsPhoneValidLength(phone.length >= expectedTotalDigits);
-                    } else {
-                      setIsPhoneValidLength(false);
-                    }
+                    // Simple validation: country code (e.g. 91 = 2 digits) + local number (e.g. 10 digits) = 12 minimum
+                    const dialCodeLen = data?.dialCode?.length || 2;
+                    const localDigits = phone.length - dialCodeLen;
+                    setIsPhoneValidLength(localDigits >= 10);
                   }}
                   inputProps={{
                     required: true,
                     name: 'phone',
+                    placeholder: 'Mobile Number *'
                   }}
                   prefix="+"
                 />
