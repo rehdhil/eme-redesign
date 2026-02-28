@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { ShinyButton } from '@/components/ui/shiny-button';
 import { CardStack, type CardStackItem } from '@/components/ui/card-stack';
 import { LogoCloud } from '@/components/ui/logo-cloud-3';
+import { getAttribution } from '@/lib/attribution';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -382,8 +383,11 @@ export const ContactSection = () => {
     const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
 
     try {
+      const attributionData = getAttribution();
+
       const queryParams = new URLSearchParams({
         ...formData,
+        ...attributionData,
         submittedAt: new Date().toISOString(),
         source: 'EME Redesign Landing Page'
       }).toString();
