@@ -9,6 +9,8 @@ import { ShinyButton } from '@/components/ui/shiny-button';
 import { CardStack, type CardStackItem } from '@/components/ui/card-stack';
 import { LogoCloud } from '@/components/ui/logo-cloud-3';
 import { getAttribution } from '@/lib/attribution';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -360,7 +362,7 @@ export const PlacementSection = () => {
 
 export const ContactSection = () => {
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'unqualified'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'unqualified' | 'invalid_phone'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -369,13 +371,22 @@ export const ContactSection = () => {
     module: ''
   });
 
+  // Track if the phone number currently entered satisfies the country's exact length format
+  const [isPhoneValidLength, setIsPhoneValidLength] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Check qualification before sending data
     if (formData.education === 'below_plus_2' || formData.education === 'plus_2') {
       setStatus('unqualified');
-      return; // Stop the submission process
+      return;
+    }
+
+    // Use the strict validation state captured directly from the library's country mask
+    if (!isPhoneValidLength) {
+      setStatus('invalid_phone');
+      return;
     }
 
     setStatus('loading');
@@ -475,14 +486,69 @@ export const ContactSection = () => {
                   className="w-full bg-slate-900 border border-white/10 text-white placeholder:text-slate-500 rounded-xl px-5 py-4 outline-none focus:border-brand-blue/50 focus:bg-slate-900/80 transition-all font-medium"
                 />
               </div>
-              <input
-                type="tel"
-                required
-                placeholder="Mobile Number *"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-slate-900 border border-white/10 text-white placeholder:text-slate-500 rounded-xl px-5 py-4 mb-6 outline-none focus:border-brand-blue/50 focus:bg-slate-900/80 transition-all font-medium"
-              />
+
+              <div className="mb-6 relative phone-container-global">
+                <style dangerouslySetInnerHTML={{
+                  __html: `
+                  .phone-container-global .react-tel-input .form-control {
+                    width: 100%;
+                    background-color: rgb(15 23 42); /* slate-900 */
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    color: white;
+                    font-weight: 500;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    height: auto;
+                    border-radius: 0.75rem; /* rounded-xl */
+                  }
+                  .phone-container-global .react-tel-input .form-control:focus {
+                    border-color: rgba(44, 134, 198, 0.5); /* brand-blue */
+                    background-color: rgba(15, 23, 42, 0.8);
+                    box-shadow: none;
+                  }
+                  .phone-container-global .react-tel-input .flag-dropdown {
+                    background-color: rgb(15 23 42);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 0.75rem 0 0 0.75rem;
+                  }
+                  .phone-container-global .react-tel-input .selected-flag:hover, 
+                  .phone-container-global .react-tel-input .selected-flag:focus {
+                    background-color: rgba(255, 255, 255, 0.05);
+                  }
+                  .phone-container-global .react-tel-input .country-list {
+                    background-color: rgb(15 23 42);
+                    color: white;
+                    border: 1px solid rgba(255,255,255,0.1);
+                  }
+                  .phone-container-global .react-tel-input .country-list .country:hover, 
+                  .phone-container-global .react-tel-input .country-list .country.highlight {
+                    background-color: rgba(44, 134, 198, 0.2);
+                  }
+                `}} />
+
+                <PhoneInput
+                  country={'in'}
+                  value={formData.phone}
+                  onChange={(phone, data: any, event, formattedValue) => {
+                    setFormData({ ...formData, phone });
+
+                    if (data && data.format) {
+                      // The format has dots for ALL digits (e.g. "+.. .........." = 12 dots)
+                      // The 'phone' value is ALL pure digits (e.g. "917306845970" = 12 length)
+                      const expectedTotalDigits = (data.format.match(/\./g) || []).length;
+                      setIsPhoneValidLength(phone.length >= expectedTotalDigits);
+                    } else {
+                      setIsPhoneValidLength(false);
+                    }
+                  }}
+                  inputProps={{
+                    required: true,
+                    name: 'phone',
+                  }}
+                  prefix="+"
+                />
+              </div>
+
               <select
                 required
                 value={formData.education}
@@ -525,6 +591,11 @@ export const ContactSection = () => {
               {status === 'error' && (
                 <p className="text-red-400 text-sm mt-4 text-center">
                   ❌ Something went wrong. Please try again or call us directly.
+                </p>
+              )}
+              {status === 'invalid_phone' && (
+                <p className="text-brand-orange text-sm mt-4 text-center font-medium bg-brand-orange/10 border border-brand-orange/20 p-3 rounded-lg">
+                  ⚠️ Please enter a complete and valid phone number including your country code.
                 </p>
               )}
               {status === 'unqualified' && (
