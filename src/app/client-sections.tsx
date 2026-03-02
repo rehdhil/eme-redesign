@@ -412,6 +412,15 @@ export const ContactSection = () => {
         },
       }).catch(err => console.log("Background webhook log:", err));
 
+      // Trigger GTM Event for successful lead
+      if (typeof window !== 'undefined') {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'lead_form_submitted',
+          module: formData.module
+        });
+      }
+
       // Test Override: Always succeed and redirect for UX testing
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', education: '', module: '' });
