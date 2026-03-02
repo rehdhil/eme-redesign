@@ -6,6 +6,7 @@ export const ATTRIBUTION_KEYS = [
     'utm_content',
     'gclid',
     'fbclid',
+    'lead_channel',
 ] as const;
 
 export type AttributionData = Partial<Record<typeof ATTRIBUTION_KEYS[number], string>>;
@@ -28,12 +29,35 @@ export function captureAttribution(queryString?: string) {
         }
     });
 
+    // Derive lead channel
+    if (currentAttribution.fbclid || currentAttribution.utm_source?.includes('facebook') || currentAttribution.utm_source?.includes('fb') || currentAttribution.utm_source?.includes('ig')) {
+        currentAttribution.lead_channel = 'Meta Ads';
+    } else if (currentAttribution.gclid || currentAttribution.utm_source?.includes('google')) {
+        currentAttribution.lead_channel = 'Google Ads';
+    } else if (currentAttribution.utm_source) {
+        currentAttribution.lead_channel = currentAttribution.utm_source;
+    } else {
+        currentAttribution.lead_channel = 'Organic/Direct';
+    }
+
     if (hasNewData) {
         try {
             // Merge with existing data so a user who navigates away and back 
             // without UTMs still retains their original attribution.
             const existingData = getAttribution();
             const mergedData = { ...existingData, ...currentAttribution };
+
+            // Recalculate lead_channel on the merged set to ensure it's accurate
+            if (mergedData.fbclid || mergedData.utm_source?.includes('facebook') || mergedData.utm_source?.includes('fb') || mergedData.utm_source?.includes('ig')) {
+                mergedData.lead_channel = 'Meta Ads';
+            } else if (mergedData.gclid || mergedData.utm_source?.includes('google')) {
+                mergedData.lead_channel = 'Google Ads';
+            } else if (mergedData.utm_source) {
+                mergedData.lead_channel = mergedData.utm_source;
+            } else {
+                mergedData.lead_channel = 'Organic/Direct';
+            }
+
             localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedData));
         } catch (e) {
             console.error('Failed to save attribution data:', e);
