@@ -419,16 +419,17 @@ export const ContactSection = () => {
           event: 'lead_form_submitted',
           module: formData.module
         });
+        console.log("Fired GTM dataLayer event: lead_form_submitted");
       }
 
       // Test Override: Always succeed and redirect for UX testing
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', education: '', module: '' });
 
-      // Small delay to show the "Success" state before redirecting
+      // Delay to ensure GTM catches the event before redirecting
       setTimeout(() => {
         router.push('/thank-you');
-      }, 800);
+      }, 1500);
 
     } catch (error) {
       console.error('Submission error:', error);
