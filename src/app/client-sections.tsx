@@ -391,7 +391,7 @@ export const ContactSection = () => {
 
     setStatus('loading');
 
-    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
+    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook-test/emelandingpage';
 
     try {
       const attributionData = getAttribution();
@@ -402,6 +402,12 @@ export const ContactSection = () => {
         submittedAt: new Date().toISOString(),
         source: 'EME Redesign Landing Page'
       }).toString();
+
+      console.log("Lead Submission Data:", {
+        ...formData,
+        ...attributionData,
+        lead_channel: attributionData.lead_channel
+      });
 
       // We use a background fetch so the redirect happens immediately for the user
       fetch(`${WEBHOOK_URL}?${queryParams}`, {
