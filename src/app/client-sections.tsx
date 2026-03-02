@@ -396,18 +396,41 @@ export const ContactSection = () => {
     try {
       const attributionData = getAttribution();
 
-      const queryParams = new URLSearchParams({
-        ...formData,
-        ...attributionData,
-        submittedAt: new Date().toISOString(),
-        source: 'EME Redesign Landing Page'
-      }).toString();
+      let queryParams = "";
+      try {
+        // Strip out any undefined or null values before passing to URLSearchParams
+        const safeAttributionData: Record<string, string> = {};
+        Object.entries(attributionData).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            safeAttributionData[key] = String(value);
+          }
+        });
+
+        queryParams = new URLSearchParams({
+          ...formData,
+          ...safeAttributionData,
+          submittedAt: new Date().toISOString(),
+          source: 'EME Redesign Landing Page'
+        }).toString();
+
+        console.log("Successfully generated query params:", queryParams);
+      } catch (paramError) {
+        console.error("Failed to generate URLSearchParams:", paramError);
+        // Fallback to basic data if attribution breaks it
+        queryParams = new URLSearchParams({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+          source: 'EME Redesign Landing Page (Fallback)'
+        }).toString();
+      }
 
       console.log("Lead Submission Data:", {
         ...formData,
         ...attributionData,
-        lead_channel: attributionData.lead_channel
+        lead_channel: attributionData?.lead_channel || "Fallback/Error"
       });
+
+      console.log(`Sending fetch to: ${WEBHOOK_URL}?${queryParams}`);
 
       // We use a background fetch so the redirect happens immediately for the user
       fetch(`${WEBHOOK_URL}?${queryParams}`, {
@@ -416,7 +439,9 @@ export const ContactSection = () => {
         headers: {
           'Accept': 'application/json',
         },
-      }).catch(err => console.log("Background webhook log:", err));
+      }).catch(err => {
+        console.error("CRITICAL: Background webhook fetch failed:", err);
+      });
 
       // Trigger GTM Event for successful lead
       if (typeof window !== 'undefined') {
@@ -438,7 +463,7 @@ export const ContactSection = () => {
       }, 1500);
 
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error('CRITICAL: Top-level Submission error:', error);
       // Even on hard error, redirect for the conversion tracking test
       router.push('/thank-you');
     }
