@@ -66,13 +66,20 @@ export function captureAttribution(queryString?: string) {
 }
 
 export function getAttribution(): AttributionData {
-    if (typeof window === 'undefined') return {};
+    if (typeof window === 'undefined') return { lead_channel: 'Organic/Direct' };
 
     try {
-        const data = localStorage.getItem(STORAGE_KEY);
-        return data ? JSON.parse(data) : {};
+        const dataStr = localStorage.getItem(STORAGE_KEY);
+        if (dataStr) {
+            const data = JSON.parse(dataStr);
+            if (!data.lead_channel) {
+                data.lead_channel = 'Organic/Direct';
+            }
+            return data;
+        }
+        return { lead_channel: 'Organic/Direct' };
     } catch (e) {
         console.error('Failed to parse attribution data:', e);
-        return {};
+        return { lead_channel: 'Organic/Direct' };
     }
 }
