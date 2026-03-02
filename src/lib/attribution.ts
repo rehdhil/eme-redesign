@@ -31,7 +31,7 @@ export function captureAttribution(queryString?: string) {
 
     // Derive lead channel
     if (currentAttribution.fbclid || currentAttribution.utm_source?.includes('facebook') || currentAttribution.utm_source?.includes('fb') || currentAttribution.utm_source?.includes('ig')) {
-        currentAttribution.lead_channel = 'Meta Ads';
+        currentAttribution.lead_channel = 'FB lead ads';
     } else if (currentAttribution.gclid || currentAttribution.utm_source?.includes('google')) {
         currentAttribution.lead_channel = 'Google Ads';
     } else if (currentAttribution.utm_source) {
@@ -49,7 +49,7 @@ export function captureAttribution(queryString?: string) {
 
             // Recalculate lead_channel on the merged set to ensure it's accurate
             if (mergedData.fbclid || mergedData.utm_source?.includes('facebook') || mergedData.utm_source?.includes('fb') || mergedData.utm_source?.includes('ig')) {
-                mergedData.lead_channel = 'Meta Ads';
+                mergedData.lead_channel = 'FB lead ads';
             } else if (mergedData.gclid || mergedData.utm_source?.includes('google')) {
                 mergedData.lead_channel = 'Google Ads';
             } else if (mergedData.utm_source) {

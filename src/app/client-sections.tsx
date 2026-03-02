@@ -391,7 +391,7 @@ export const ContactSection = () => {
 
     setStatus('loading');
 
-    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook-test/emelandingpage';
+    const WEBHOOK_URL = 'https://n8n.tetherlo.com/webhook/emelandingpage';
 
     try {
       const attributionData = getAttribution();
